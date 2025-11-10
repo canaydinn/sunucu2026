@@ -90,126 +90,189 @@ console.log(add(1,2,3,4,5,6)) */
 function addToCart(urun_adi,adet,fiyat){
 
 }
-
-addToCart("Elma",2,10)
-addToCart("Armut",5,35)
-addToCart("Limon",8,65)
-let urunler=[{
-    urunadi:"Elma",
-    adet:2,
-    fiyat:10
-},{
-    urunadi:"Armut",
-    adet:5,
-    fiyat:35
-},{
-    urunadi:"Limon",
-    adet:8,
-    fiyat:65
-}] */
-
-/* function addToCartNew(urunler){
-    console.log(urunler.urunadi)
-    console.log(urunler.adet)
-    console.log(urunler.fiyat)
+*/
+/* function addToCart(products){
+    console.log(products)
 }
-addToCartNew(urunler[0]) */
+
+let products=[{productName:"Telefon",quantity:2,unitPrice:5000}
+,{productName:"Bilgisayar",quantity:1,unitPrice:15000}
+,{productName:"Bardak",quantity:3,unitPrice:20}]
+
+addToCart(products)
 
 
-//Distracting İşlemi
-//let bolgeler=["İç Anadolu","Marmara","Karadeniz"]
-//console.log(bolgeler[2])
-//let [urun_adi,adet,fiyat]=["Limon",3,20]
+//Spread Operatörü
+let numbers=[30,10,500,600,1200,120]
 
-//console.log(urun_adi)
+console.log(Math.min(...numbers))
 
- 
-let [elma,armut,limon]=[
-    {urun_adi:"Elma",adet:10,fiyat:100},
-    {urun_adi:"Armut",adet:5,fiyat:300},
-    {urun_adi:"Limon",adet:50,fiyat:10},
+///Distracting (Yayma)
+
+let regions=["İç Anadolu","Marmara","Karadeniz","Ege"]
+console.log(regions[0])
+console.log(regions[1])
+console.log(regions[2])
+
+
+
+let [icAnadolu,marmara,karadeniz]=[
+    {name:"İç Anadolu",population:"20M"},
+    {name:"Marmara",population:"30M"},
+    {name:"Karadeniz",population:"10M"}
 ]
-console.log(armut.urun_adi)
+
+console.log(icAnadolu.population)
+
+ */
+
+//ES 6 ve sonrası için
+/* 
 
 
-//filter
-
-const sayilar=[1,2,3,4,5,6,7,8,9,10]
-
-const teksayilar=sayilar.filter(sayi=>sayi%2===0);
-console.log(teksayilar)
-
-
-//Find
-
-
-const numbers=[1,2,3,4,5,6,7,8,9,10]
-
-const ciftsayilar=numbers.find(function(sayi){
-    return sayi%2===0;
+//Klasik Fonksiyon Tanımı
+function addToCart(products){
+    console.log(products)
 }
-);
-console.log(ciftsayilar)
+
+//Arrow Function ES6 ve sonrası için parametreli Arrow Function
+const addToCart2=(products)=>{
+    console.log(products)
+}
+//Parametresiz Arrow Function
+addToCart=>console.log("Sepete Eklendi")
+
+const yas=40
+let durum=""
+//if-else klasik kullanımı
+if(yas==50){
+durum="Yaşınız 40'tır"
+}else{
+durum="Yaşınız 40 değildir"
+}
+console.log(durum)
+
+
+//Ternary Kullanımı ES6 ve sonrası için
+durum= yas==40 ? "Yaşınız 40'tır" : "Yaşınız 40 değildir"
+console.log(durum)
+
+
+//üç koşularda Ternary Kullanımı
+let kategori= yas<18 ? "Genç" : yas>=18 && yas<65 ? "Yetişkin" : "Yaşlı"
+console.log(kategori)
+//Diziler Array
+//Filter Kullanımı ES6 ve sonrası için
+const numbers=[1,2,3,4,5,6,7,8,9,10];
+const evenNumbers=numbers.filter(number=>number%2==0)
+console.log(evenNumbers)
+
+//Find Kullanımı ES6 ve sonrası için
+const foundNumber=numbers.find(number=>number>5)
+console.log(foundNumber)
+
+ */
+//Every Kullanımı ES6 ve sonrası için
+numbers=[1,2,3,4,5,6,7,8,9,10];
+const allPositive=numbers.every(number=>number%2===0)
+console.log(allPositive)
+
+//Some Kullanımı ES6 ve sonrası için
+const anyEven=numbers.some(number=>number%2===0)
+console.log(anyEven)
 
 
 
-//map fonksiyonu
-
-const num=[1,2,3,4,5,6]
-
-const katSayi=num.map(num=>num*2)
-
-console.log(katSayi)
+//Map Kullanımı ES6 ve sonrası için
+const square=numbers.map(number=>number*100)
+console.log(square)
 
 
-//reduce fonksiyonu
-
-const nu=[1,2,3,4,5,6]
-
-const toplam=nu.reduce((acc,curr)=>acc+curr,0)
-
-console.log(toplam)
+//Reduce Kullanımı ES6 ve sonrası için
+const sum=numbers.reduce((accumulator,number)=>accumulator+number,0)
+console.log(sum)
 
 
-//forEach fonksiyonu
 
-const say=[1,2,3,4,5,6]
-say.forEach(say=>{
-    console.log(say)
+//Map Reduce Kullanımı ES6 ve sonrası için
+let cart=[
+    {id:1,productName:"Telefon",quantity:2,unitPrice:5000},
+    {id:2,productName:"Bilgisayar",quantity:1,unitPrice:15000},
+    {id:3,productName:"Bardak",quantity:3,unitPrice:20}
+]
+console.log("<ul>")
+//Sepetteki ürünleri göstermek için
+cart.map(product=>{
+    console.log("<li>"+product.productName +":"+product.unitPrice * product.quantity+"</li>")
 })
+console.log("</ul>")
 
-//Hata denetimi
+//Toplam fiyatı bulmak için
+let total=cart.reduce((acc,product)=>acc+product.unitPrice * product.quantity,0)
+console.log(total)
+
+
+//Objeler
+const person={}
+person.name="Can"
+person.lastname="Uzun"
+person.age=25  
+
+
+const car={
+    brand:"BMW",
+    model:"X5",
+    year:2020,
+    getir:()=>{
+        return this.brand + " " + this.model + " " + this.year
+    }
+}
+console.log(car.brand)
+console.log(car["model"])
+
+
+
+
+
+//For Döngüsü
+for (let i=0;i<10;i++){
+    console.log(i)
+}
+
+
+//Foreach Döngüsü
+let dizi=["Elma","Armut","Muz"] 
+dizi.forEach(function(item){
+    console.log(item)
+})
+//ES6 ve sonrası için Arrow Function ile
+dizi.forEach(item=>console.log(item))
+
+
+
+//Hata Denetimi Try Catch
+
 
 try{
     const result=10/0
     console.log(result)
 }
 catch(error){
-console.log("Hata:"+error.message)
+    console.log("Bir hata oluştu"+error.message)
 }
 finally{
-    console.log("İşlem Tamamlandı")
+    console.log("İşlem tamamlandı")
 }
-//Thro Hata Yakalama
-function bolmeİslem(x,y){
+
+function bolmeİslemi(x,y){
     if(y===0){
-        throw new Error("Sıfıra Bölme Hatası")
+        throw new Error("Bölen sıfır olamaz")
     }
-    return x/y
 }
 try{
     const sonuc=bolmeİslemi(10,0)
-    console.log("Sonuc",sonuc)
+    console.log("Sonuç:"+sonuc)
 }
 catch(error){
-    console.log("Hata Yakalandı"+error.message)
+    console.log("Hata:"+error.message)
 }
-
-
-
-
-
-
-
-
-
