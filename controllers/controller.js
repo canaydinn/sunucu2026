@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const dbConn=require("../db/mysql_connect")
 const login=async(req,res)=>{
     console.log(req.body)
@@ -35,3 +36,15 @@ const register=async(req,res)=>{
 }
 
 module.exports={login,register}
+=======
+const kullanici_login=async(req,res)=>{
+    console.log(req.body)
+    return res.json(req.body)
+}
+const kullanici_ekle=async(req,res)=>{
+    console.log(req.body)
+    return res.json(req.body)
+}
+
+module.exports={kullanici_login,kullanici_ekle};
+>>>>>>> fe766ae65e14f5484d5ececa3fb04cfaeabae453
