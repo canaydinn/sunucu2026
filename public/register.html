@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <h1>User Registration</h1>
+    <form>
+        <label for="adi">First Name:</label>
+        <input type="text" id="adi" name="adi" required><br><br>
+        
+        <label for="soyadi">Last Name:</label>
+        <input type="text" id="soyadi" name="soyadi" required><br><br>
+        
+        <label for="hesap_no">Account Number:</label>
+        <input type="text" id="hesap_no" name="hesap_no" required><br><br>
+        
+        <label for="kullanici_adi">Username:</label>
+        <input type="text" id="kullanici_adi" name="kullanici_adi" required><br><br>
+        
+        <label for="sifre">Password:</label>
+        <input type="password" id="sifre" name="sifre" required><br><br>
+        
+        <button type="submit">Register</button>
+    </form>
+</body>
+<script>
+    const form =document.querySelector('form');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const adi = document.getElementById('adi').value;
+        const soyadi = document.getElementById('soyadi').value;
+        const hesap_no = document.getElementById('hesap_no').value;
+        const kullanici_adi = document.getElementById('kullanici_adi').value;
+        const sifre = document.getElementById('sifre').value;
+
+
+        const formData={
+            adi:adi,
+            soyadi:soyadi,
+            hesap_no:hesap_no,
+            kullanici_adi:kullanici_adi,
+            sifre:sifre
+        };
+
+        const response = await fetch('http://localhost:3000/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData ),
+        });
+        console.log(response);
+        const result = await response.json();
+        if (result.success) {
+            alert('Registration successful!');
+        } else {
+            alert('Registration failed: ');
+        }
+    });
+</script>
+</html>

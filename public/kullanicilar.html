@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kullanıcılar</h1>
+    <table> 
+        <thead>
+            <tr>
+                <th>Adı</th>
+                <th>Soyadı</th>
+                <th>Hesap No</th>
+                <th>Kullanıcı Adı</th>
+            </tr>
+        </thead>
+        <tbody id="userTableBody">
+            <!-- Kullanıcı verileri buraya eklenecek -->
+        </tbody>
+    </table>
+    
+</body>
+<script>
+    async function fetchUsers() {
+        try {
+            const response = await fetch('http://localhost:3000/api/users');
+            const users = await response.json();
+            const tableBody = document.getElementById('userTableBody');
+
+            users.forEach(user => {
+                const row = document.createElement('tr');
+
+                const adiCell = document.createElement('td');
+                adiCell.textContent = user.adi;
+                row.appendChild(adiCell);
+
+                const soyadiCell = document.createElement('td');
+                soyadiCell.textContent = user.soyadi;
+                row.appendChild(soyadiCell);
+
+                const hesapNoCell = document.createElement('td');
+                hesapNoCell.textContent = user.hesap_no;
+                row.appendChild(hesapNoCell);
+
+                const kullaniciAdiCell = document.createElement('td');
+                kullaniciAdiCell.textContent = user.kullanici_adi;
+                row.appendChild(kullaniciAdiCell);
+
+                tableBody.appendChild(row);
+            });
+        } catch (error) {
+            console.error('Error fetching users:', error);
+        }
+    }
+
+    // Sayfa yüklendiğinde kullanıcıları getir
+    window.onload = fetchUsers;
+</script>
+</html>
